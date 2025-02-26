@@ -43,8 +43,21 @@
             </div>
         </div>
 
+        <div id="welcome-section" style="display: none;">
+            <h2>Welcome to ServiceHub!</h2>
+            <p>Discover and book services that match your needs.</p>
+        </div>
+
         <div id="services-section">
-            <h2>Available Services</h2>
+            <div class="services-header">
+                <h2>Available Services</h2>
+                <div class="category-filters">
+                    <button class="btn btn-outline-primary" onclick="filterServices('all')">All</button>
+                    <button class="btn btn-outline-primary" onclick="filterServices('cleaning')">Cleaning</button>
+                    <button class="btn btn-outline-primary" onclick="filterServices('repair')">Repair</button>
+                    <button class="btn btn-outline-primary" onclick="filterServices('maintenance')">Maintenance</button>
+                </div>
+            </div>
             <div class="row" id="serviceList"></div>
         </div>
     </div>

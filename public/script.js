@@ -56,13 +56,21 @@ async function handleSignup(event) {
 }
 
 // Services functions
-async function fetchServices() {
+function showWelcomeMessage(show) {
+    document.getElementById('welcome-section').style.display = show ? 'block' : 'none';
+}
+
+async function fetchServices(category = 'all') {
     try {
         const response = await fetch('/api/services/all');
         const services = await response.json();
         
+        const filteredServices = category === 'all' 
+            ? services 
+            : services.filter(service => service.category === category);
+
         const serviceList = document.getElementById('serviceList');
-        serviceList.innerHTML = services.map(service => `
+        serviceList.innerHTML = filteredServices.map(service => `
             <div class="col-md-4">
                 <div class="service-card">
                     <h3>${service.service_name}</h3>
