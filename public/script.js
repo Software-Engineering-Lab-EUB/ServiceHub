@@ -1,5 +1,69 @@
+// Service categories data
+const serviceCategories = {
+    cleaning: ["Cleaning", "Party clean up", "Apartment cleaning", "Deep clean", "Garage Cleaning", "Move-out clean", "Gutter cleaning", "Pressure washing"],
+    handyman: ["Appliance installation", "Carpentry", "Door lock repair", "Painting & drywall", "Ceiling installation", "Light fixture replacement", "Deck & fence repair"],
+    moving: ["Moving Help", "Truck-assisted help moving", "Trash & furniture removal", "Heavy lifting & Loading", "Rearrange Furniture", "Junk haul away"],
+    painting: ["Indoor painting", "Wallpapering", "Outdoor painting", "Concrete & brick painting", "Accent wall painting", "Wallpaper removal"],
+    assembly: ["Desk assembly", "General furniture assembly", "IKEA assembly", "Crib assembly", "PAX assembly", "Bookshelf assembly"],
+    mounting: ["Hang art, mirror & decor", "Install blinds & window treatments", "Mount & anchor furniture", "Install Shelves, rods & hooks", "TV mounting"],
+    outdoor: ["Yard work", "Lawn care", "Snow removal", "Landscaping help", "Branch & Hedge Trimming", "Gardening & Weeding"],
+    repairs: ["Door, cabinet & furniture repair", "Wall repair", "Sealing & caulking", "Appliance installation & repair", "Window & blinds repair"],
+    plumbing: ["Pipe repair", "Leak detection & repair", "Faucet installation", "Toilet repair", "Drain repair", "Water heater installation"],
+    electrical: ["Wiring & rewiring", "Circuit breaker repair", "Outlet & switch installation", "Lighting installation", "Ceiling fan installation"],
+    furniture: ["Furniture assembly & repair", "Custom furniture making", "Upholstery repair", "Cabinet installation", "Shelving & wardrobe installation"],
+    trending: ["Smart home setup", "EV supply installation", "AI-powered security system", "Ergonomic furniture setup", "Standing desk assembly"]
+};
 
-// Authentication functions
+let selectedService = '';
+let selectedSubcategory = '';
+
+// Show subcategories when a main category is clicked
+function showSubcategories(category) {
+    const mainCategories = document.getElementById('mainCategories');
+    const existingSubcategories = document.querySelector('.subcategories');
+
+    if (existingSubcategories) {
+        existingSubcategories.remove();
+    }
+
+    const subcategoriesDiv = document.createElement('div');
+    subcategoriesDiv.className = 'subcategories active';
+
+    const subcategoryList = serviceCategories[category.toLowerCase()] || [];
+    subcategoryList.forEach(subcat => {
+        const subcatDiv = document.createElement('div');
+        subcatDiv.className = 'subcategory-item';
+        subcatDiv.textContent = subcat;
+        subcatDiv.onclick = () => showServiceForm(category, subcat);
+        subcategoriesDiv.appendChild(subcatDiv);
+    });
+
+    mainCategories.appendChild(subcategoriesDiv);
+}
+
+// Show service booking form
+function showServiceForm(category, subcategory) {
+    selectedService = category;
+    selectedSubcategory = subcategory;
+    document.getElementById('selectedServiceTitle').textContent = `Book ${subcategory}`;
+    document.getElementById('serviceFormModal').style.display = 'block';
+}
+
+// Handle service form submission
+function handleServiceSubmit(event) {
+    event.preventDefault();
+    document.getElementById('serviceFormModal').style.display = 'none';
+    document.getElementById('confirmationDialog').style.display = 'block';
+}
+
+// Confirm service order
+function confirmServiceOrder() {
+    // Here you could add API call to save the order
+    document.getElementById('confirmationDialog').style.display = 'none';
+    alert('Your service order has been confirmed! We will contact you soon.');
+}
+
+// Authentication functions (keeping the existing ones)
 function showLoginForm() {
     document.getElementById('auth-forms').style.display = 'block';
     document.getElementById('login-form').style.display = 'block';
@@ -56,6 +120,7 @@ async function handleSignup(event) {
     }
 }
 
+
 // Services functions
 function showWelcomeMessage(show) {
     document.getElementById('welcome-section').style.display = show ? 'block' : 'none';
@@ -65,9 +130,9 @@ async function fetchServices(category = 'all') {
     try {
         const response = await fetch('/api/services/all');
         const services = await response.json();
-        
-        const filteredServices = category === 'all' 
-            ? services 
+
+        const filteredServices = category === 'all'
+            ? services
             : services.filter(service => service.category === category);
 
         const serviceList = document.getElementById('serviceList');
@@ -117,18 +182,14 @@ async function bookService(serviceId) {
     }
 }
 
-// Filter services by category
-function filterServices(category) {
-    fetchServices(category);
-}
 
 // Add click handlers for service categories
-document.querySelectorAll('.service-category').forEach(category => {
-    category.addEventListener('click', () => {
-        const serviceName = category.querySelector('h3').textContent.toLowerCase();
-        filterServices(serviceName);
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.service-category').forEach(category => {
+        category.addEventListener('click', () => {
+            const serviceName = category.querySelector('h3').textContent.toLowerCase();
+            showSubcategories(serviceName);
+        });
     });
+    fetchServices('all');
 });
-
-// Load services when page loads
-document.addEventListener('DOMContentLoaded', () => fetchServices('all'));

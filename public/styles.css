@@ -136,6 +136,61 @@ body {
     border-radius: 6px;
 }
 
+.subcategories {
+    display: none;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.subcategories.active {
+    display: block;
+}
+
+.subcategory-item {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.subcategory-item:hover {
+    background: #f5f5f5;
+    transform: scale(1.02);
+}
+
+.service-form-modal {
+    max-width: 500px;
+}
+
+.service-form-modal input,
+.service-form-modal textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.service-form-modal textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.confirmation-instructions {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.confirmation-instructions p {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
     .hero-section {
         padding: 40px 0;
