@@ -153,8 +153,8 @@ body {
     margin: 5px;
     border-radius: 25px;
     cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #01fa26;
+    color: rgb(46, 17, 17);
     transition: all 0.3s;
 }
 
