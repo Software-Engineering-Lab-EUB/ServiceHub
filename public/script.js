@@ -48,7 +48,8 @@ async function handleSignup(event) {
         });
         const data = await response.json();
         if (data.message) {
-            showLoginForm();
+            document.getElementById('auth-forms').style.display = 'none';
+            window.location.reload();
         }
     } catch (error) {
         console.error('Signup error:', error);
