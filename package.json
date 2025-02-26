@@ -1,7 +1,8 @@
+
 {
   "name": "service-platform",
   "version": "1.0.0",
-  "description": "A simple service booking platform",
+  "description": "A service booking platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,14 +12,12 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2",
+    "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "stripe": "^14.17.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  },
-  "author": "Saimun",
-  "license": "MIT",
-  "keywords": []
+  }
 }
