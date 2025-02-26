@@ -39,6 +39,24 @@ body {
     transition: transform 0.3s;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     cursor: pointer;
+    overflow: hidden;
+}
+
+.category-image {
+    margin: -20px -20px 15px -20px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.service-category:hover img {
+    transform: scale(1.1);
 }
 
 .service-category:hover {
