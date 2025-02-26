@@ -117,5 +117,18 @@ async function bookService(serviceId) {
     }
 }
 
+// Filter services by category
+function filterServices(category) {
+    fetchServices(category);
+}
+
+// Add click handlers for service categories
+document.querySelectorAll('.service-category').forEach(category => {
+    category.addEventListener('click', () => {
+        const serviceName = category.querySelector('h3').textContent.toLowerCase();
+        filterServices(serviceName);
+    });
+});
+
 // Load services when page loads
-document.addEventListener('DOMContentLoaded', fetchServices);
+document.addEventListener('DOMContentLoaded', () => fetchServices('all'));
