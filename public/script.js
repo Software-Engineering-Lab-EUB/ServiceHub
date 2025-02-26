@@ -51,6 +51,13 @@ function showSubcategories(category, clickedElement) {
 
 // Show service booking form
 function showServiceForm(category, subcategory) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Please log in first to book a service');
+        showLoginForm();
+        return;
+    }
+    
     selectedService = category;
     selectedSubcategory = subcategory;
     document.getElementById('selectedServiceTitle').textContent = `Book ${subcategory}`;
