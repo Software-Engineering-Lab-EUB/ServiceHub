@@ -140,8 +140,7 @@ body {
     display: none;
     padding: 20px;
     margin-top: 20px;
-    overflow-x: auto;
-    white-space: nowrap;
+    width: 100%;
 }
 
 .subcategories.active {

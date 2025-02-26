@@ -18,14 +18,13 @@ let selectedService = '';
 let selectedSubcategory = '';
 
 // Show subcategories when a main category is clicked
-function showSubcategories(category) {
-    const mainCategories = document.getElementById('mainCategories');
+function showSubcategories(category, clickedElement) {
     const existingSubcategories = document.querySelector('.subcategories');
-
     if (existingSubcategories) {
         existingSubcategories.remove();
     }
 
+    const parentCol = clickedElement.closest('.col-md-3');
     const subcategoriesDiv = document.createElement('div');
     subcategoriesDiv.className = 'subcategories active';
 
@@ -38,7 +37,16 @@ function showSubcategories(category) {
         subcategoriesDiv.appendChild(subcatDiv);
     });
 
-    mainCategories.appendChild(subcategoriesDiv);
+    const nextElement = parentCol.nextElementSibling;
+    const parentRow = parentCol.parentElement;
+    const rowWidth = parentRow.offsetWidth;
+    const colWidth = parentCol.offsetWidth;
+    const colsPerRow = Math.floor(rowWidth / colWidth);
+    const colIndex = Array.from(parentRow.children).indexOf(parentCol);
+    const insertAfterIndex = Math.floor(colIndex / colsPerRow) * colsPerRow + colsPerRow - 1;
+    const insertAfterElement = parentRow.children[insertAfterIndex] || parentRow.lastElementChild;
+    
+    insertAfterElement.after(subcategoriesDiv);
 }
 
 // Show service booking form
@@ -186,9 +194,9 @@ async function bookService(serviceId) {
 // Add click handlers for service categories
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.service-category').forEach(category => {
-        category.addEventListener('click', () => {
+        category.addEventListener('click', (e) => {
             const serviceName = category.querySelector('h3').textContent.toLowerCase();
-            showSubcategories(serviceName);
+            showSubcategories(serviceName, category);
         });
     });
     fetchServices('all');
