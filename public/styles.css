@@ -177,7 +177,13 @@ body {
 }
 
 .service-form-modal {
-    max-width: 500px;
+    max-width: 90%;
+    width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    margin: 20px auto;
 }
 
 .service-form-modal input,

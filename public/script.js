@@ -100,10 +100,17 @@ async function handleLogin(event) {
             localStorage.setItem('token', data.token);
             fetchServices();
             document.getElementById('auth-forms').style.display = 'none';
+            document.getElementById('logoutButton').style.display = 'block';
         }
     } catch (error) {
         console.error('Login error:', error);
     }
+}
+
+function handleLogout() {
+    localStorage.removeItem('token');
+    document.getElementById('logoutButton').style.display = 'none';
+    window.location.reload();
 }
 
 async function handleSignup(event) {
