@@ -6,8 +6,8 @@ const serviceCategories = {
     painting: ["Indoor painting", "Wallpapering", "Outdoor painting", "Concrete & brick painting", "Accent wall painting", "Wallpaper removal"],
     assembly: ["Desk assembly", "General furniture assembly", "IKEA assembly", "Crib assembly", "PAX assembly", "Bookshelf assembly"],
     mounting: ["Hang art, mirror & decor", "Install blinds & window treatments", "Mount & anchor furniture", "Install Shelves, rods & hooks", "TV mounting"],
-    outdoor: ["Yard work", "Lawn care", "Snow removal", "Landscaping help", "Branch & Hedge Trimming", "Gardening & Weeding"],
-    repairs: ["Door, cabinet & furniture repair", "Wall repair", "Sealing & caulking", "Appliance installation & repair", "Window & blinds repair"],
+    outdoor: ["Yard work", "Lawn care", "Snow removal", "Landscaping help", "Branch & Hedge Trimming", "Gardening & Weeding", "Fence repair", "Pool maintenance"],
+    "home repairs": ["Door repair", "Wall repair", "Sealing & caulking", "Appliance repair", "Window repair", "Floor repair", "Roof repair", "Gutter repair"],
     plumbing: ["Pipe repair", "Leak detection & repair", "Faucet installation", "Toilet repair", "Drain repair", "Water heater installation"],
     electrical: ["Wiring & rewiring", "Circuit breaker repair", "Outlet & switch installation", "Lighting installation", "Ceiling fan installation"],
     furniture: ["Furniture assembly & repair", "Custom furniture making", "Upholstery repair", "Cabinet installation", "Shelving & wardrobe installation"],
@@ -45,7 +45,7 @@ function showSubcategories(category, clickedElement) {
     const colIndex = Array.from(parentRow.children).indexOf(parentCol);
     const insertAfterIndex = Math.floor(colIndex / colsPerRow) * colsPerRow + colsPerRow - 1;
     const insertAfterElement = parentRow.children[insertAfterIndex] || parentRow.lastElementChild;
-    
+
     insertAfterElement.after(subcategoriesDiv);
 }
 
