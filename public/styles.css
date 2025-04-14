@@ -6,22 +6,70 @@ body {
 }
 
 .navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    font-weight: bold;
+    color: black !important;
+    margin-right: 15px;
+    transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    /*color: #facc15;*/
+    color: #4f46e5 !important;
 }
 
 .hero-section {
-    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    background: linear-gradient(135deg, #36a6e7, #73eee8);
     color: white;
-    padding: 80px 0;
+    padding: 10px 0;
     position: relative;
     overflow: hidden;
 }
 
+.hero-image {
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    animation: float 4s ease-in-out infinite;
+}
+
 .search-box {
     display: flex;
+    max-width: 450px;
     gap: 10px;
-    max-width: 500px;
-    margin-top: 30px;
+}
+
+.search-box input {
+    flex-grow: 1;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.search-box button {
+    border-radius: 8px;
+    background-color: #facc15;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #fbbf24;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
 }
 
 .section-title {
@@ -152,14 +200,14 @@ body {
     margin: 5px;
     border-radius: 25px;
     cursor: pointer;
-    background-color: #01fa26;
+    background-color: #d3ddd4;
     color: rgb(46, 17, 17);
     transition: all 0.3s;
 }
 
 .subcategory-item:hover {
     transform: scale(1.1);
-    background-color: #45a049;
+    background-color: #9fb1a0;
 }
 
 .form-label {
@@ -243,4 +291,48 @@ body {
     .section-title {
         font-size: 1.5rem;
     }
+}
+
+/* Footer Styles */
+.footer-section {
+    background-color: #888f96;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer-section h5 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-section ul {
+    padding-left: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #4f46e5;
+}
+
+.app-download .btn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #4f46e5;
 }
