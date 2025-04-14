@@ -9,7 +9,7 @@ const router = express.Router();
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID || 'your-client-id',
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'your-client-secret',
-    callbackURL: "/api/auth/google/callback"
+    callbackURL: "https://d35bffa9-1d1e-4652-9553-66fc8b8aedb7-00-3w2n9yskrrfge.spock.replit.dev/api/auth/google/callback"
   },
   (accessToken, refreshToken, profile, done) => {
     db.get(`SELECT * FROM users WHERE email = ?`, [profile.emails[0].value], (err, user) => {
