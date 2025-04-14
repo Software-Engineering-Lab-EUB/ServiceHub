@@ -8,6 +8,7 @@ const session = require("express-session");
 
 dotenv.config();
 const app = express();
+app.set('trust proxy', true);
 
 app.use(session({
   secret: 'your-session-secret',
