@@ -1,8 +1,32 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const db = require("../database/db");
 const router = express.Router();
+
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "/api/auth/google/callback"
+  },
+  (accessToken, refreshToken, profile, done) => {
+    db.get(`SELECT * FROM users WHERE email = ?`, [profile.emails[0].value], (err, user) => {
+      if (err) return done(err);
+      if (!user) {
+        db.run(`INSERT INTO users (name, email) VALUES (?, ?)`,
+          [profile.displayName, profile.emails[0].value],
+          function(err) {
+            if (err) return done(err);
+            return done(null, { id: this.lastID, name: profile.displayName, email: profile.emails[0].value });
+          });
+      } else {
+        return done(null, user);
+      }
+    });
+  }
+));
 
 // Signup
 router.post("/signup", (req, res) => {
@@ -31,5 +55,18 @@ router.post("/login", (req, res) => {
     res.json({ token });
   });
 });
+
+// Google Auth Routes
+router.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    const token = jwt.sign({ id: req.user.id }, "secretkey", { expiresIn: "1h" });
+    res.redirect(`/?token=${token}`);
+  }
+);
 
 module.exports = router;

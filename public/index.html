@@ -254,22 +254,34 @@
     <div id="auth-forms" class="modal-overlay" style="display: none;">
         <div class="auth-modal">
             <div id="login-form">
-                <h2>Login</h2>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2>Login</h2>
+                    <button class="close-btn" onclick="document.getElementById('auth-forms').style.display='none'">&times;</button>
+                </div>
                 <form onsubmit="handleLogin(event)">
                     <input type="email" placeholder="Email" id="login-email" required>
                     <input type="password" placeholder="Password" id="login-password" required>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
                 </form>
+                <a href="/api/auth/google" class="btn btn-danger w-100">
+                    <i class="fab fa-google me-2"></i>Login with Google
+                </a>
             </div>
 
             <div id="signup-form" style="display: none;">
-                <h2>Sign Up</h2>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2>Sign Up</h2>
+                    <button class="close-btn" onclick="document.getElementById('auth-forms').style.display='none'">&times;</button>
+                </div>
                 <form onsubmit="handleSignup(event)">
                     <input type="text" placeholder="Name" id="signup-name" required>
                     <input type="email" placeholder="Email" id="signup-email" required>
                     <input type="password" placeholder="Password" id="signup-password" required>
-                    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Sign Up</button>
                 </form>
+                <a href="/api/auth/google" class="btn btn-danger w-100">
+                    <i class="fab fa-google me-2"></i>Sign up with Google
+                </a>
             </div>
         </div>
     </div>
