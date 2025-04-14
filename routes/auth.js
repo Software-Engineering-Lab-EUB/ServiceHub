@@ -14,13 +14,13 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-const credentials = JSON.parse(process.env.GOOGLE_OAUTH_SECRETS);
-passport.use(new GoogleStrategy({
-    clientID: credentials.web.client_id,
-    clientSecret: credentials.web.client_secret,
+const googleConfig = {
+    clientID: process.env.GOOGLE_CLIENT_ID || 'dummy-client-id',
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'dummy-client-secret',
     callbackURL: "/api/auth/google/callback",
     proxy: true
-  },
+};
+passport.use(new GoogleStrategy(googleConfig,
   (accessToken, refreshToken, profile, done) => {
     db.get(`SELECT * FROM users WHERE email = ?`, [profile.emails[0].value], (err, user) => {
       if (err) return done(err);
