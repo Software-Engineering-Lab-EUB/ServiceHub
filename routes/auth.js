@@ -6,9 +6,18 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const db = require("../database/db");
 const router = express.Router();
 
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
+const credentials = JSON.parse(process.env.GOOGLE_OAUTH_SECRETS);
 passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    clientID: credentials.web.client_id,
+    clientSecret: credentials.web.client_secret,
     callbackURL: "/api/auth/google/callback",
     proxy: true
   },
