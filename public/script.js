@@ -91,13 +91,18 @@ function showSignupForm() {
     document.getElementById('signup-form').style.display = 'block';
 }
 
+// Configure API base URL
+const API_BASE_URL = window.location.hostname.includes('replit.dev') 
+    ? '/api' 
+    : 'http://localhost:5000/api';
+
 async function handleLogin(event) {
     event.preventDefault();
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
 
     try {
-        const response = await fetch('/api/auth/login', {
+        const response = await fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -150,7 +155,7 @@ function showWelcomeMessage(show) {
 
 async function fetchServices(category = 'all') {
     try {
-        const response = await fetch('/api/services/all');
+        const response = await fetch(`${API_BASE_URL}/services/all`);
         const services = await response.json();
 
         const filteredServices = category === 'all'
@@ -183,7 +188,7 @@ async function bookService(serviceId) {
     }
 
     try {
-        const response = await fetch('/api/bookings/create', {
+        const response = await fetch(`${API_BASE_URL}/bookings/create`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
