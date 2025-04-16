@@ -17,25 +17,36 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="#">ServiceHub</a>
-                <div class="navbar-nav ms-auto">
-                    <button
-                        class="btn btn-outline-primary me-2"
-                        onclick="showLoginForm()"
-                    >
-                        Login
-                    </button>
-                    <button class="btn btn-primary" onclick="showSignupForm()">
-                        Sign Up
-                    </button>
-                    <button
-                        id="logoutButton"
-                        class="btn btn-outline-danger me-2"
-                        style="display: none"
-                        onclick="handleLogout()"
-                    >
-                        Logout
-                    </button>
+                <a class="navbar-brand fw-bold" href="/">ServiceHub</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages/services.html">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages/about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages/contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="navbar-nav">
+                        <button class="btn btn-outline-primary me-2" onclick="showLoginForm()">
+                            Login
+                        </button>
+                        <button class="btn btn-primary" onclick="showSignupForm()">
+                            Sign Up
+                        </button>
+                        <button id="logoutButton" class="btn btn-outline-danger me-2" style="display: none" onclick="handleLogout()">
+                            Logout
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -511,9 +522,9 @@
                         <h5>Follow Us!</h5>
                         <p>We're friendly:</p>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Discover</a></li>
+                            <li><a href="/pages/services.html" class="text-white">Discover</a></li>
                             <li>
-                                <a href="#" class="text-white"
+                                <a href="/pages/become-provider.html" class="text-white"
                                     >Become a Tasker</a
                                 >
                             </li>
