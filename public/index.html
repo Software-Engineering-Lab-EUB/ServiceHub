@@ -13,9 +13,10 @@
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">ServiceHub</a>
             <div class="navbar-nav ms-auto">
-                <button class="btn btn-outline-primary me-2" onclick="showLoginForm()">Login</button>
+                <button class="btn btn-outline-primary me-3" onclick="showLoginForm()">Login</button>
                 <button class="btn btn-primary" onclick="showSignupForm()">Sign Up</button>
-                <button id="logoutButton" class="btn btn-outline-danger me-2" style="display:none;" onclick="handleLogout()">Logout</button> </div>
+                <button id="logoutButton" class="btn btn-outline-danger me-3" style="display:none;" onclick="handleLogout()">Logout</button>
+            </div>
         </div>
     </nav>
 
@@ -253,8 +254,9 @@
 
     <div id="auth-forms" class="modal-overlay" style="display: none;">
         <div class="auth-modal">
+
             <!-- Login Form -->
-            <div id="login-form">
+            <div id="login-form" style="display: none;">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h2>Login</h2>
                     <button class="close-btn" onclick="closeAuthForms()">&times;</button>
@@ -268,7 +270,7 @@
                         <label class="form-label">Password</label>
                         <input type="password" id="loginPassword" class="form-control" placeholder="Password" required />
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                    <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
                 </form>
                 <a href="/api/auth/google" class="btn btn-danger w-100">
                     <i class="fab fa-google me-2"></i>Login with Google
@@ -294,12 +296,13 @@
                         <label class="form-label">Password</label>
                         <input type="password" id="signupPassword" class="form-control" placeholder="Password" required />
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 mb-3">Sign Up</button>
+                    <button type="submit" class="btn btn-primary w-100 mb-2">Sign Up</button>
                 </form>
                 <a href="/api/auth/google" class="btn btn-danger w-100">
                     <i class="fab fa-google me-2"></i>Sign up with Google
                 </a>
             </div>
+
         </div>
     </div>
 
@@ -348,7 +351,7 @@
                 <div class="col-md-3">
                     <h5>Contact Us</h5>
                     <p>Email: support@servicehub.com</p>
-                    <p>Phone: +1 (123) 456-7890</p>
+                    <p>Phone: +880 (123) 456-7890</p>
                     <div class="social-icons">
                         <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>

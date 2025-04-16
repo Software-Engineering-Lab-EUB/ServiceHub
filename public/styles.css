@@ -152,22 +152,20 @@ body {
     bottom: 0;
     background: rgba(0,0,0,0.5);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+
 }
 
 .auth-modal {
     background: white;
     padding: 30px;
     border-radius: 12px;
-    width: 90%;
+    width: 100%;
     max-width: 400px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .auth-modal h2 {

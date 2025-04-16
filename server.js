@@ -20,7 +20,7 @@ app.use(passport.session());
 
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:5000', 'http://127.0.0.1:5000'],
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
   credentials: true
 }));
 app.use(express.static("public"));
@@ -41,5 +41,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log('Server is running on port ${PORT}');
+});
