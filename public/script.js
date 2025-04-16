@@ -192,12 +192,10 @@ const API_BASE_URL = window.location.hostname.includes("replit.dev")
     : "http://localhost:5000/api";
 
 function handleLoginSubmit(e) {
-    e.preventDefault(); // stop page refresh
+    e.preventDefault();
 
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
-
-    handleLogin(e);
 
     fetch("/api/auth/login", {
         method: "POST",
@@ -208,12 +206,16 @@ function handleLoginSubmit(e) {
         .then((data) => {
             if (data.token) {
                 localStorage.setItem("jwt", data.token);
-                alert("Login successful!");
-                document.getElementById("logoutButton").style.display =
-                    "inline-block";
+                localStorage.setItem("loggedIn", "true");
+                closeAuthForms();
+                updateAuthUI();
             } else {
                 alert("Login failed");
             }
+        })
+        .catch(error => {
+            console.error("Login error:", error);
+            alert("Login failed. Please try again.");
         });
 }
 
@@ -239,12 +241,16 @@ function handleSignupSubmit(e) {
         .then((data) => {
             if (data.token) {
                 localStorage.setItem("jwt", data.token);
-                alert("Signup successful!");
-                document.getElementById("logoutButton").style.display =
-                    "inline-block";
+                localStorage.setItem("loggedIn", "true");
+                closeAuthForms();
+                updateAuthUI();
             } else {
                 alert("Signup failed");
             }
+        })
+        .catch(error => {
+            console.error("Signup error:", error);
+            alert("Signup failed. Please try again.");
         });
 }
 
