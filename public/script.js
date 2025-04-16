@@ -397,6 +397,18 @@ const bangladeshDistricts = [
     // Add more districts as needed
 ];
 
+function populateServiceAreas() {
+    const serviceAreaSelect = document.querySelector('select[required]');
+    if (serviceAreaSelect) {
+        bangladeshDistricts.forEach(district => {
+            const option = document.createElement('option');
+            option.value = district.toLowerCase();
+            option.textContent = district;
+            serviceAreaSelect.appendChild(option);
+        });
+    }
+}
+
 window.onload = function () {
     populateServiceAreas();
     // First part: Handle token from URL params
