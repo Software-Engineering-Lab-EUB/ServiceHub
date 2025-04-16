@@ -140,17 +140,9 @@ function showSubcategories(category, clickedElement) {
 
 // Show service booking form
 function showServiceForm(category, subcategory) {
-    const token = localStorage.getItem("token");
-    if (!token) {
-        alert("Please log in first to book a service");
-        showLoginForm();
-        return;
-    }
-
     selectedService = category;
     selectedSubcategory = subcategory;
-    document.getElementById("selectedServiceTitle").textContent =
-        `Book ${subcategory}`;
+    document.getElementById("selectedServiceTitle").textContent = `Book ${subcategory}`;
     document.getElementById("serviceFormModal").style.display = "block";
 }
 
@@ -163,14 +155,16 @@ function handleServiceSubmit(event) {
 
 // Confirm service order
 function confirmServiceOrder() {
+    const token = localStorage.getItem("jwt");
     const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-    if (!isLoggedIn) {
+
+    if (!token || !isLoggedIn) {
         alert("Please log in first to confirm your order");
         document.getElementById("confirmationDialog").style.display = "none";
         showLoginForm();
         return;
     }
-    
+
     // Here you could add API call to save the order
     document.getElementById("confirmationDialog").style.display = "none";
     alert("Your service order has been confirmed! We will contact you soon.");
