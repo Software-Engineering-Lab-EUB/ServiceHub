@@ -163,6 +163,14 @@ function handleServiceSubmit(event) {
 
 // Confirm service order
 function confirmServiceOrder() {
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+    if (!isLoggedIn) {
+        alert("Please log in first to confirm your order");
+        document.getElementById("confirmationDialog").style.display = "none";
+        showLoginForm();
+        return;
+    }
+    
     // Here you could add API call to save the order
     document.getElementById("confirmationDialog").style.display = "none";
     alert("Your service order has been confirmed! We will contact you soon.");
