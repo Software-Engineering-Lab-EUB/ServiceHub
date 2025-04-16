@@ -391,7 +391,14 @@ function updateAuthUI() {
         : "none";
 }
 
+const bangladeshDistricts = [
+    "Dhaka", "Chittagong", "Rajshahi", "Khulna", "Barisal", "Sylhet", "Rangpur", "Mymensingh",
+    "Comilla", "Narayanganj", "Gazipur", "Bogra", "Kushtia", "Jessore", "Dinajpur"
+    // Add more districts as needed
+];
+
 window.onload = function () {
+    populateServiceAreas();
     // First part: Handle token from URL params
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
