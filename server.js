@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -8,21 +7,25 @@ const session = require("express-session");
 
 dotenv.config();
 const app = express();
-app.set('trust proxy', true);
+app.set("trust proxy", true);
 
-app.use(session({
-  secret: 'your-session-secret',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    secret: "your-session-secret",
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.json());
-app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:8080", "http://127.0.0.1:8080"],
+    credentials: true,
+  }),
+);
 app.use(express.static("public"));
 
 // Import Routes
@@ -41,7 +44,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log('Server is running on port ${PORT}');
-});
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, "0.0.0.0", () =>
+  console.log(`Server running on port ${PORT}`),
+);

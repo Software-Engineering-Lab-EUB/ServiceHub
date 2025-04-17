@@ -157,14 +157,14 @@ function handleServiceSubmit(event) {
 function confirmServiceOrder() {
     const token = localStorage.getItem("jwt");
     const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-    
+
     if (!token || !isLoggedIn) {
         alert("Please log in first to confirm your order");
         document.getElementById("confirmationDialog").style.display = "none";
         showLoginForm();
         return;
     }
-    
+
     // Here you could add API call to save the order
     document.getElementById("confirmationDialog").style.display = "none";
     alert("Your service order has been confirmed! We will contact you soon.");
@@ -391,7 +391,57 @@ function updateAuthUI() {
         : "none";
 }
 
+
+const districts = [
+    "Dhaka", "Chittagong", "Rajshahi", "Khulna", "Barisal", "Sylhet", "Rangpur", "Mymensingh",
+    "Comilla", "Narayanganj", "Gazipur", "Bogra", "Kushtia", "Jessore", "Dinajpur"
+];
+
+const serviceAreaSelect = document.getElementById('serviceArea');
+
+// Populate the Service Area dropdown
+districts.forEach(district => {
+    const option = document.createElement('option');
+    option.value = district.toLowerCase();
+    option.textContent = district;
+    serviceAreaSelect.appendChild(option);
+});
+
+// Popular services working method
+document.querySelectorAll('.hero-category').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const selectedCategory = this.getAttribute('data-category');
+
+        // Scroll to the Popular Services section smoothly
+        const section = document.querySelector('#mainCategories');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Delay slightly so scroll completes and DOM is ready
+        setTimeout(() => {
+            const categoryItems = document.querySelectorAll('.service-category');
+            categoryItems.forEach(item => {
+                const titleElement = item.querySelector('h3');
+                if (titleElement && titleElement.innerText.trim() === selectedCategory) {
+
+                    // Optionally close other categories if needed
+                    categoryItems.forEach(i => i.classList.remove('active')); // Remove 'active' from all
+                    item.classList.add('active'); // Add 'active' to the selected one
+
+                    // If your site uses a toggle function, call it here:
+                    showSubcategories(selectedCategory, item);
+                }
+            });
+        }, 500);
+    });
+});
+
+
+
 window.onload = function () {
+    populateServiceAreas();
     // First part: Handle token from URL params
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
