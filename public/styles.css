@@ -1,8 +1,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
     margin: 0;
     padding: 0;
     padding-top: 76px;
+    box-sizing: border-box;
 }
 
 .navbar {
@@ -39,7 +41,7 @@ body {
     max-width: 90%;
     border-radius: 10px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    animation: float 4s ease-in-out infinite;
+    animation: float 2s ease-in-out infinite;
 }
 
 .search-box {
@@ -145,16 +147,16 @@ body {
 }
 
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
 }
 
 .auth-modal {
@@ -181,6 +183,18 @@ body {
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
+}
+
+#loginForm,
+#signupForm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#loginForm .form-group,
+#signupForm .form-group{
+    margin-bottom: 15px;
 }
 
 .subcategories {
@@ -225,13 +239,15 @@ body {
 }
 
 .service-form-modal {
-    max-width: 90%;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
-    position: relative;
-    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .service-form-modal input,

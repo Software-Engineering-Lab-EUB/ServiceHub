@@ -9,29 +9,75 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+        <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+        <a class="navbar-brand fw-bold" href="/">ServiceHub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/pages/services.html">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/pages/about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/pages/contact.html">Contact</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    
     <div class="container mt-5">
         <h1>Become a Service Provider</h1>
-        <form id="providerRegistrationForm" class="mt-4">
+        <!-- Go to Home Button -->
+        <div class="text-end mb-4">
+            <a href="/" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left me-1"></i> Go to Home
+            </a>
+        </div>
+        <form id="providerRegistrationForm" class="mt-4" method="POST" action="/register-provider">
             <div class="mb-3">
                 <label class="form-label">Full Name</label>
-                <input type="text" class="form-control" required>
+                <input type="text" 
+                        name="name" 
+                        class="form-control" 
+                        required>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Service Category</label>
-                <select class="form-control" required>
+                <select name="serviceCatagory" 
+                        class="form-control" 
+                        id="service_catagory" 
+                        required>
                     <option value="">Select Category</option>
-                    <option value="plumbing">Plumbing</option>
-                    <option value="electrical">Electrical</option>
-                    <!-- Add more categories -->
+                    <!-- Will be populated by JavaScript -->
                 </select>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Experience (Years)</label>
-                <input type="number" class="form-control" required>
+                <input type="number" 
+                        name="experience" 
+                        class="form-control" 
+                        required>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Service Area</label>
-                <select class="form-control" required>
+                <select name="serviceArea" 
+                        class="form-control" 
+                        id="serviceArea" 
+                        required>
                     <option value="">Select District</option>
                     <!-- Will be populated by JavaScript -->
                 </select>

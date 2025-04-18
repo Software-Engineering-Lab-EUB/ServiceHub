@@ -32,16 +32,27 @@ db.serialize(() => {
         FOREIGN KEY (provider_id) REFERENCES users (id)
     )`);
 
+    // db.run(`DROP TABLE IF EXISTS serviceProvider`);
+
     db.run(`CREATE TABLE IF NOT EXISTS bookings (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER,
-        service_id INTEGER,
+        user_name TEXT CHECK(user_name GLOB '[A-Za-z ]*'),
+        contact_number TEXT,
+        email TEXT,
+        service_address TEXT,
         date TEXT,
         time TEXT,
-        status TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (service_id) REFERENCES services(id)
+        work_details TEXT,
+        status TEXT DEFAULT 'pending',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`);
+    
+    db.run(`CREATE TABLE IF NOT EXISTS serviceProviders(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT CHECK(name GLOB '[A-Z a-z]*'),
+        serviceCatagory TEXT,
+        experience INTEGER,
+        service_area TEXT
     )`);
 
     db.run(`CREATE TABLE IF NOT EXISTS reviews (

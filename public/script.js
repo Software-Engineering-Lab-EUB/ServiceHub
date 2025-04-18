@@ -149,9 +149,34 @@ function showServiceForm(category, subcategory) {
 // Handle service form submission
 function handleServiceSubmit(event) {
     event.preventDefault();
-    document.getElementById("serviceFormModal").style.display = "none";
-    document.getElementById("confirmationDialog").style.display = "block";
+
+    const payload = {
+        user_name: document.getElementById("fullName").value,
+        contact_number: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+        service_address: document.getElementById("address").value,
+        date: document.getElementById("serviceDate").value,
+        time: document.getElementById("serviceTime").value,
+        work_details: document.getElementById("workDetails").value,
+    };
+
+    fetch("/api/book/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", },
+        body: JSON.stringify(payload),
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Booking success:", data);
+        document.getElementById("serviceFormModal").style.display = "none";
+        document.getElementById("confirmationDialog").style.display = "block";
+    })
+    .catch(err => {
+        console.error("Booking error:", err);
+        alert("Something went wrong.");
+    });
 }
+
 
 // Confirm service order
 function confirmServiceOrder() {
@@ -169,6 +194,7 @@ function confirmServiceOrder() {
     document.getElementById("confirmationDialog").style.display = "none";
     alert("Your service order has been confirmed! We will contact you soon.");
 }
+
 
 // Authentication functions (keeping the existing ones)
 function showLoginForm() {
@@ -391,23 +417,68 @@ function updateAuthUI() {
         : "none";
 }
 
-const bangladeshDistricts = [
+
+const districts = [
     "Dhaka", "Chittagong", "Rajshahi", "Khulna", "Barisal", "Sylhet", "Rangpur", "Mymensingh",
     "Comilla", "Narayanganj", "Gazipur", "Bogra", "Kushtia", "Jessore", "Dinajpur"
-    // Add more districts as needed
 ];
 
-function populateServiceAreas() {
-    const serviceAreaSelect = document.querySelector('select[required]');
-    if (serviceAreaSelect) {
-        bangladeshDistricts.forEach(district => {
-            const option = document.createElement('option');
-            option.value = district.toLowerCase();
-            option.textContent = district;
-            serviceAreaSelect.appendChild(option);
-        });
-    }
-}
+const sCatagorys = [
+    "Cleaning", "Handyman", "Moving", "Painting", "Assembly", "Mountain", "Outdoor Help",
+    "Home Repairs", "Plumbing", "Electrical", "Furniture", "Trending"
+];
+
+const serviceAreaSelect = document.getElementById('serviceArea');
+const sCatagorySelect = document.getElementById('service_catagory');
+
+// Populate the Service Area dropdown
+districts.forEach(district => {
+    const option = document.createElement('option');
+    option.value = district.toLowerCase();
+    option.textContent = district;
+    serviceAreaSelect.appendChild(option);
+});
+
+// Populate the Service Catagory dropdown
+sCatagorys.forEach(sCatagory => {
+    const option = document.createElement('option');
+    option.value = sCatagory.toLowerCase();
+    option.textContent = sCatagory;
+    sCatagorySelect.appendChild(option);
+});
+
+// Popular services working method
+document.querySelectorAll('.hero-category').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const selectedCategory = this.getAttribute('data-category');
+
+        // Scroll to the Popular Services section smoothly
+        const section = document.querySelector('#mainCategories');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Delay slightly so scroll completes and DOM is ready
+        setTimeout(() => {
+            const categoryItems = document.querySelectorAll('.service-category');
+            categoryItems.forEach(item => {
+                const titleElement = item.querySelector('h3');
+                if (titleElement && titleElement.innerText.trim() === selectedCategory) {
+
+                    // Optionally close other categories if needed
+                    categoryItems.forEach(i => i.classList.remove('active')); // Remove 'active' from all
+                    item.classList.add('active'); // Add 'active' to the selected one
+
+                    // If your site uses a toggle function, call it here:
+                    showSubcategories(selectedCategory, item);
+                }
+            });
+        }, 500);
+    });
+});
+
+
 
 window.onload = function () {
     populateServiceAreas();
