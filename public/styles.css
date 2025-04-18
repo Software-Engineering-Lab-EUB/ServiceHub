@@ -163,8 +163,13 @@ body {
     background: white;
     padding: 30px;
     border-radius: 12px;
+<<<<<<< HEAD
     width: 90%;
     max-width: 400px;
+=======
+    width: 100%;
+    max-width: 444px;
+>>>>>>> 3ca986bf06f83e9edddbd476f7a47259647f2d24
     position: fixed;
     top: 50%;
     left: 50%;
