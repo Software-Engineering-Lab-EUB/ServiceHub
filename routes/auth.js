@@ -3,6 +3,8 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const db = require("../database/db");
 const { signup, login, googleCallback } = require("../controllers/authController");
+const { serviceProviderLogin } = require("../controllers/authController");
+const { serviceProviderSignup } = require("../controllers/authController");
 
 const router = express.Router();
 
@@ -36,6 +38,8 @@ passport.use(new GoogleStrategy({
 // Auth routes
 router.post("/signup", signup);
 router.post("/login", login);
+router.post("/serviceProviders/loginPage/service-provider-login", serviceProviderLogin);
+router.post("/register-service-provider", serviceProviderSignup);
 
 // Google OAuth routes
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));

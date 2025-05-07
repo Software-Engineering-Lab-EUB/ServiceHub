@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Provider Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../assets/logo.png" alt="Logo">
+            </div>
+            <ul class="sidebar-links">
+                <li><a href="/serviceProviders/providerTools/profile/profile.html">👤 Profile</a></li>
+                <li><a href="services.html">🛠 Services</a></li>
+                <li><a href="availability.html">📅 Availability</a></li>
+                <li><a href="/serviceProviders/providerTools/tasks/task.html">📋 Tasks</a></li>
+                <li><a href="earnings.html">💰 Earnings</a></li>
+                <li><a href="messages.html">💬 Messages</a></li>
+                <li><a href="settings.html">⚙️ Settings</a></li>
+                <li><a href="help.html">❓ Help Center</a></li>
+            </ul>
+            <button class="logout-btn">🚪 Logout</button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="dashboard-content">
+            <header>
+                <h1>Welcome to Your Dashboard</h1>
+                <div class="summary-cards">
+                    <div class="card">
+                        <h3>Upcoming Tasks</h3>
+                        <p>2 Tasks Pending</p>
+                    </div>
+                    <div class="card">
+                        <h3>Earnings</h3>
+                        <p>$120.00 This Month</p>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <section class="dashboard-main">
+                    <h2>Your Current Tasks</h2>
+                    <!-- Insert common landing page elements here -->
+                    <div class="task-overview">
+                        <div class="task-card">
+                            <p>Task #1: Plumbing Service - 3PM</p>
+                        </div>
+                        <div class="task-card">
+                            <p>Task #2: Moving Help - 5PM</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

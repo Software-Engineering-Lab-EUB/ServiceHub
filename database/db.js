@@ -32,7 +32,7 @@ db.serialize(() => {
         FOREIGN KEY (provider_id) REFERENCES users (id)
     )`);
 
-    // db.run(`DROP TABLE IF EXISTS serviceProvider`);
+    //db.run(`DROP TABLE IF EXISTS serviceProvider`);
 
     db.run(`CREATE TABLE IF NOT EXISTS bookings (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -47,13 +47,21 @@ db.serialize(() => {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )`);
     
-    db.run(`CREATE TABLE IF NOT EXISTS serviceProviders(
+    db.run(`CREATE TABLE IF NOT EXISTS serviceProviders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT CHECK(name GLOB '[A-Z a-z]*'),
-        serviceCatagory TEXT,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL,
+        phone TEXT,
+        dob TEXT,
+        nid TEXT,
+        serviceCategory TEXT,
         experience INTEGER,
-        service_area TEXT
-    )`);
+        service_area TEXT,
+        workStart TEXT,
+        workEnd TEXT,
+        workingDays TEXT
+    )`);    
 
     db.run(`CREATE TABLE IF NOT EXISTS reviews (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

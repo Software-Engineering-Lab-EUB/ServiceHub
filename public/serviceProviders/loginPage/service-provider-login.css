@@ -1,0 +1,36 @@
+.auth-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.close-btn:hover {
+    color: #666;
+}
+
+.form-control {
+    height: 45px;
+}
+
+.btn {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

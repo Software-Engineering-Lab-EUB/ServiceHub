@@ -41,50 +41,196 @@
         <!-- Go to Home Button -->
         <div class="text-end mb-4">
             <a href="/" class="btn btn-outline-primary">
-            <i class="fas fa-arrow-left me-1"></i> Go to Home
+                <i class="fas fa-arrow-left me-1"></i> Go to Home
             </a>
         </div>
-        <form id="providerRegistrationForm" class="mt-4" method="POST" action="/register-provider">
-            <div class="mb-3">
-                <label class="form-label">Full Name</label>
-                <input type="text" 
-                        name="name" 
-                        class="form-control" 
-                        required>
+        <form id="providerRegistrationForm" class="mt-4" method="POST" action="/api/auth/register-service-provider">
+            <!-- Personal Information Section -->
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Personal Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" minlength="8" required>
+                            <small class="text-muted">Minimum 8 characters</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" name="confirmPassword" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+880</span>
+                                <input type="tel" name="phone" class="form-control" pattern="[0-9]{10}" required>
+                            </div>
+                            <small class="text-muted">Bangladeshi number (10 digits without +880)</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Date of Birth</label>
+                            <input type="date" name="dob" class="form-control" max="2007-12-31" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">NID Card Number</label>
+                        <input type="text" name="nid" class="form-control" pattern="[0-9]{10,17}" required>
+                        <small class="text-muted">Bangladeshi NID (10-17 digits)</small>
+                    </div>
+                </div>
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">Service Category</label>
-                <select name="serviceCatagory" 
-                        class="form-control" 
-                        id="service_catagory" 
-                        required>
-                    <option value="">Select Category</option>
-                    <!-- Will be populated by JavaScript -->
-                </select>
+    
+            <!-- Professional Information Section -->
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Professional Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Service Category</label>
+                            <select name="serviceCategory" 
+                                    class="form-control" 
+                                    id="service_category" 
+                                    >
+                                <option value="">Select Category</option>
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Experience (Years)</label>
+                            <input type="number" name="experience" class="form-control" min="0" max="50" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Service Area</label>
+                        <select name="serviceArea" class="form-control" id="serviceArea" required>
+                            <option value="">Select District</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label class="form-label">Working Hours</label>
+                        <div class="col-md-6 mb-2">
+                            <label>Start Time</label>
+                            <input type="time" name="workStart" class="form-control" min="06:00" max="20:00" required>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label>End Time</label>
+                            <input type="time" name="workEnd" class="form-control" required>
+                            <small class="text-muted">Minimum 3 hours working time.</small>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Working Days</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="workingDays" value="saturday" id="sat">
+                            <label class="form-check-label" for="sat">Saturday</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="workingDays" value="sunday" id="sun">
+                            <label class="form-check-label" for="sun">Sunday</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="workingDays" value="monday" id="mon">
+                            <label class="form-check-label" for="mon">Monday</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="workingDays" value="tuesday" id="tue">
+                            <label class="form-check-label" for="tue">Tuesday</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="workingDays" value="wednesday" id="wed">
+                            <label class="form-check-label" for="wed">Wednesday</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="workingDays" value="thursday" id="thu">
+                            <label class="form-check-label" for="thu">Thursday</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="workingDays" value="friday" id="fri">
+                            <label class="form-check-label" for="fri">Friday</label>
+                        </div>
+                        <small class="text-muted">Select at least one working day</small>
+                    </div>
+                </div>
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">Experience (Years)</label>
-                <input type="number" 
-                        name="experience" 
-                        class="form-control" 
-                        required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Service Area</label>
-                <select name="serviceArea" 
-                        class="form-control" 
-                        id="serviceArea" 
-                        required>
-                    <option value="">Select District</option>
-                    <!-- Will be populated by JavaScript -->
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Register as Service Provider</button>
+    
+            <button type="submit" class="btn btn-primary btn-lg">Register as Service Provider</button>
         </form>
     </div>
     <script src="../script.js"></script>
+
+    <!-- JavaScript for Logic Validation -->
+    <script>
+        document.getElementById('providerRegistrationForm').addEventListener('submit', function(e) {
+            // Password match validation
+            const password = document.querySelector('input[name="password"]');
+            const confirmPassword = document.querySelector('input[name="confirmPassword"]');
+            if (password.value !== confirmPassword.value) {
+                alert('Passwords do not match!');
+                e.preventDefault();
+                return;
+            }
+        
+            // Working hours validation (minimum 3 hours)
+            const startTime = document.querySelector('input[name="workStart"]');
+            const endTime = document.querySelector('input[name="workEnd"]');
+            const start = new Date(`2000-01-01T${startTime.value}:00`);
+            const end = new Date(`2000-01-01T${endTime.value}:00`);
+            const diff = (end - start) / (1000 * 60 * 60); // Difference in hours
+            
+            if (diff < 3) {
+                alert('Working hours must be at least 3 hours!');
+                e.preventDefault();
+                return;
+            }
+        
+            // At least one working day selected
+            const workingDays = document.querySelectorAll('input[name="workingDays"]:checked');
+            if (workingDays.length === 0) {
+                alert('Please select at least one working day!');
+                e.preventDefault();
+                return;
+            }
+        });
+        
+        // Dynamic end time adjustment based on start time
+        document.querySelector('input[name="workStart"]').addEventListener('change', function() {
+            const startTime = this.value;
+            const endTimeInput = document.querySelector('input[name="workEnd"]');
+            
+            if (startTime) {
+                const [hours, minutes] = startTime.split(':');
+                const minEndTime = `${String(parseInt(hours) + 3).padStart(2, '0')}:${minutes}`;
+                endTimeInput.min = minEndTime;
+                
+                // Adjust current end time if invalid
+                if (endTimeInput.value && endTimeInput.value < minEndTime) {
+                    endTimeInput.value = minEndTime;
+                }
+            }
+        });
+    </script>
 </body>
 </html>

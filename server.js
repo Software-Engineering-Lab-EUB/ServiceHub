@@ -15,7 +15,7 @@ const app = express();
 const authRoutes = require("./routes/auth");
 const serviceRoutes = require("./routes/services");
 const bookingsRoutes = require("./routes/bookings");
-const profileRoutes = require("./routes/profiles");
+const profilesRoutes = require("./routes/profiles");
 
 //Middleware setup
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -51,7 +51,7 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/book", bookingsRoutes);
-app.use("/api/profiles", profileRoutes);
+app.use("/api/profiles", profilesRoutes);
 
 // Serve static files
 app.get("/", (req, res) => {

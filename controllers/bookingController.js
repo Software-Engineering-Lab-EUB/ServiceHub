@@ -75,3 +75,79 @@ exports.getUserBookings = (req, res) => {
     }
   );
 };
+// Get all pending bookings
+exports.getPendingBookings = (req, res) => {
+  db.all(
+    "SELECT * FROM bookings WHERE status = 'pending'",
+    [],
+    (err, rows) => {
+      if (err) return res.status(400).json({ error: err.message });
+      res.json(rows);
+    }
+  );
+};
+// Update booking status
+exports.updateBookingStatus = (req, res) => {
+  const { status } = req.body;
+  const { id } = req.params;
+
+  // Update the status of the booking in the database
+  db.run("UPDATE bookings SET status = ? WHERE id = ?", [status, id], function (err) {
+      if (err) {
+          return res.status(400).json({ error: err.message });
+      }
+      res.json({ message: `Booking status updated to ${status}` });
+  });
+};
+// Accept or decline a booking
+exports.acceptOrDeclineBooking = (req, res) => {
+  const { id, action } = req.params;
+
+  // Update the status of the booking
+  db.run(
+    "UPDATE bookings SET status = ? WHERE id = ?",
+    [action, id],
+    function (err) {
+      if (err) return res.status(400).json({ error: err.message });
+      res.json({ message: `Booking ${action}ed successfully` });
+    }
+  );
+};
+// Get all bookings
+exports.getAllBookings = (req, res) => {
+  db.all("SELECT * FROM bookings", [], (err, rows) => {
+    if (err) return res.status(400).json({ error: err.message });
+    res.json(rows);
+  });
+};
+// Get booking by ID
+exports.getBookingById = (req, res) => {
+  const { id } = req.params;
+  db.get("SELECT * FROM bookings WHERE id = ?", [id], (err, row) => {
+    if (err) return res.status(400).json({ error: err.message });
+    res.json(row);
+  });
+};
+// Delete booking by ID
+exports.deleteBookingById = (req, res) => {
+  const { id } = req.params;
+  db.run("DELETE FROM bookings WHERE id = ?", [id], function (err) {
+    if (err) return res.status(400).json({ error: err.message });
+    res.json({ message: "Booking deleted successfully" });
+  });
+}
+//checkbox status
+exports.updateBookingCheckboxStatus = (req, res) => {
+  const { status } = req.body;
+  const { id } = req.params;
+
+  // Update the status of the booking
+  db.run(
+    "UPDATE bookings SET status = ? WHERE id = ?",
+    [status, id],
+    function (err) {
+      if (err) return res.status(400).json({ error: err.message });
+      res.json({ message: `Booking status updated to ${status}` });
+    }
+  );
+};

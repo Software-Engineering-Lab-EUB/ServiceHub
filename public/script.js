@@ -210,6 +210,11 @@ function showSignupForm() {
     document.getElementById("signup-form").style.display = "block";
 }
 
+function showServiceProviderLoginForm() {
+    // Show the login form for service providers, or redirect them to the login page
+    window.location.href = "/serviceProviders/loginPage/service-provider-login.html";  // Or you can use a modal instead
+}
+
 function closeAuthForms() {
     document.getElementById("auth-forms").style.display = "none";
 }
@@ -273,7 +278,9 @@ function handleSignupSubmit(e) {
                 closeAuthForms();
                 updateAuthUI();
             } else {
-                alert("Signup failed");
+                alert("Signup Successful! Please log in.");
+                closeAuthForms();
+                showLoginForm();
             }
         })
         .catch(error => {

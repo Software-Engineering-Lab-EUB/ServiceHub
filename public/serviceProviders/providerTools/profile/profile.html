@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Provider Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Service Provider Profile</h1>
+        <div class="profile-info">
+            <div class="profile-photo">
+                <img src="../profile/profilePictures/1994087643.jpg" alt="Profile Photo" id="profilePhoto">
+                <label for="profilePicInput" class="photo-upload-label">Upload Photo</label>
+                <input type="file" id="profilePicInput" accept="image/*">
+            </div>
+
+            <!-- Personal Information -->
+            <div class="info-section">
+                <h2>Personal Information</h2>
+                <form id="profileForm">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" value="" required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" value="" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="" disabled>
+
+                    <label for="nid">National ID</label>
+                    <input type="number" id="nid" name="nid" value="" required>
+                </form>
+            </div>
+
+            <!-- Professional Information -->
+            <div class="info-section">
+                <h2>Professional Information</h2>
+                <label for="serviceCategory">Service Category</label>
+                <input type="text" id="serviceCategory" name="serviceCategory" value="" required>
+
+                <label for="experience">Experience (Years)</label>
+                <input type="number" id="experience" name="experience" value="" required>
+
+                <label for="serviceArea">Service Area</label>
+                <input type="text" id="service_area" name="service_area" value="" required>
+
+                <label for="workStart">Work Start Time</label>
+                <input type="time" id="workStart" name="workStart" value="" required>
+
+                <label for="workEnd">Work End Time</label>
+                <input type="time" id="workEnd" name="workEnd" value="" required>
+            </div>
+            <button type="submit">Update Profile</button>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script type="module" src="profile.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Page</title>
+    <link rel="stylesheet" href="task.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../assets/logo.png" alt="Logo">
+            </div>
+            <ul class="sidebar-links">
+                <li><a href="/serviceProviders/providerTools/profile/profile.html">👤 Profile</a></li>
+                <li><a href="services.html">🛠 Services</a></li>
+                <li><a href="availability.html">📅 Availability</a></li>
+                <li><a href="tasks.html">📋 Tasks</a></li>
+                <li><a href="earnings.html">💰 Earnings</a></li>
+                <li><a href="messages.html">💬 Messages</a></li>
+                <li><a href="settings.html">⚙️ Settings</a></li>
+                <li><a href="help.html">❓ Help Center</a></li>
+            </ul>
+            <button class="logout-btn">🚪 Logout</button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="dashboard-content">
+            <header>
+                <h1>Pending Tasks</h1>
+                <button id="go-home" class="btn">Go to Home Page</button>
+            </header>
+            <main>
+                <table id="tasks-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>User Name</th>
+                            <th>Contact Number</th>
+                            <th>Email</th>
+                            <th>Service Address</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Work Details</th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                            <th>Stats</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic content will be added here -->
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+
+    <!-- Confirmation Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h3 id="popup-message"></h3>
+            <button id="close-popup">Close</button>
+            <button id="confirm-action">Confirm</button>
+        </div>
+    </div>
+
+    <script src="task.js"></script>
+</body>
+</html>
